@@ -1,8 +1,14 @@
 from rest_framework import serializers
-from .models import Flashcard
+from .models import Flashcard, Collection
 
 
-class FlashcardSerializer(serializers.ModelSerializer):
+class FlashcardSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Flashcard
-        fields = ['id', 'question', 'answer']
+        fields = ['url', 'id', 'question', 'answer', 'collection']
+
+
+class CollectionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Collection
+        fields = ['url', 'id', 'name']
